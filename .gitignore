@@ -1,0 +1,86 @@
+*.iml
+.kotlin
+.gradle
+.fleet
+**/build/
+xcuserdata
+!src/**/build/
+local.properties
+.idea
+.DS_Store
+captures
+.externalNativeBuild
+.cxx
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcodeproj/project.xcworkspace/
+!*.xcworkspace/contents.xcworkspacedata
+**/xcshareddata/WorkspaceSettings.xcsettings
+
+# Ignore Gradle files
+.gradle/
+build/
+.idea/
+out/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/*
+
+# Ignore iOS build files
+iosApp/Pods/
+iosApp/.swiftpm/
+iosApp/.build/
+iosApp/DerivedData/
+
+# Ignore SQLDelight generated files (optional)
+shared/build/
+
+# Ignore log files
+*.log
+
+# Kotlin/Gradle
+
+
+# Jetpack Compose Multiplatform
+*.kts.cache/
+*.kts.tmp/
+composeApp/.cinterop/
+composeApp/.konan/
+composeApp/.gradle/
+composeApp/build/
+
+# Android specific
+androidApp/.cxx/
+androidApp/build/
+androidApp/intermediates/
+androidApp/gen/
+androidApp/libs/
+androidApp/bin/
+androidApp/obj/
+androidApp/.idea/
+androidApp/.gradle/
+
+# iOS specific
+iosApp/build/
+iosApp/*.xcworkspace/
+iosApp/*.xcodeproj/
+
+# IntelliJ/VS Code
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Misc
+Thumbs.db
+*.hprof
+
+# Gradle cache and logs
+/caches/
+/daemon/
+/wrapper/
+/logs/
+
+# Environment specific
+.env
+.env.local
+
