@@ -1,29 +1,27 @@
 package com.bvn.bookcmp
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
-
-import bookapp_cmp.composeapp.generated.resources.Res
-import bookapp_cmp.composeapp.generated.resources.compose_multiplatform
+import com.bvn.bookcmp.book.data.network.KtorRemoteBookDataSource
+import com.bvn.bookcmp.book.data.repository.DefaultBookRepository
 import com.bvn.bookcmp.book.presentation.book_list.BookListScreenRoot
 import com.bvn.bookcmp.book.presentation.book_list.BookListViewModel
+import com.bvn.bookcmp.core.data.HttpClientFactory
+import io.ktor.client.engine.HttpClientEngine
 
 @Composable
 @Preview
-fun App() {
+fun App(engine: HttpClientEngine) {
     MaterialTheme {
         BookListScreenRoot(
-            viewModel = remember { BookListViewModel() },
+            viewModel = remember { BookListViewModel(
+                bookRepository = DefaultBookRepository(
+                    remoteBookDataSource = KtorRemoteBookDataSource(
+                        httpClient = HttpClientFactory.create(engine)
+                    )
+                )
+            ) },
             onBookClick = {}
         )
     }
