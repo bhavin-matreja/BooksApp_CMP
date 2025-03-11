@@ -26,6 +26,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.bvn.bookcmp.book.domain.Book
 import com.bvn.bookcmp.book.presentation.SelectedBookViewModel
+import com.bvn.bookcmp.book.presentation.book_detail.BookDetailAction
+import com.bvn.bookcmp.book.presentation.book_detail.BookDetailScreenRoot
+import com.bvn.bookcmp.book.presentation.book_detail.BookDetailViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import com.bvn.bookcmp.book.presentation.book_list.BookListScreenRoot
 import com.bvn.bookcmp.book.presentation.book_list.BookListViewModel
@@ -68,7 +71,24 @@ fun App() {
                     val selectedBookViewModel =
                         backStackEntry.sharedKoinViewModel<SelectedBookViewModel>(navController)
                     val selectedBook by selectedBookViewModel.selectedBook.collectAsStateWithLifecycle()
+
+                    val viewModel = koinViewModel<BookDetailViewModel>()
+
+                    LaunchedEffect(selectedBook) {
+                        selectedBook?.let {
+                            viewModel.onAction(BookDetailAction.onSelectedBookChange(it))
+                        }
+                    }
+
+                    BookDetailScreenRoot(
+                        viewmodel = viewModel,
+                        onBackClick = {
+                            navController.navigateUp()
+                        }
+                    )
+                    /*
                     Box(
+
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
@@ -76,6 +96,7 @@ fun App() {
                         // get the id from arguements
                         // Text("Book Detail screen, the id is ${args.id}")
                     }
+                     */
                 }
             }
         }
