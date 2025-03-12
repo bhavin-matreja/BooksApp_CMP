@@ -8,6 +8,8 @@
 
 package com.bvn.bookcmp.app
 
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -46,7 +48,12 @@ fun App() {
             navigation<Route.BookGraph>(
                 startDestination = Route.BookList
             ) {
-                composable<Route.BookList> {
+                composable<Route.BookList>(
+//                    exitTransition = { slideOutHorizontally() }, // when exiting and navigating to detail screen
+                    popEnterTransition = { // pop detail screen and get back to list screen
+                        slideInHorizontally()
+                    }
+                ){
                     val viewModel = koinViewModel<BookListViewModel>()
                     val selectedBookViewModel =
                         it.sharedKoinViewModel<SelectedBookViewModel>(navController)
@@ -66,7 +73,14 @@ fun App() {
                     )
                 }
 
-                composable<Route.BookDetail> { backStackEntry ->
+                composable<Route.BookDetail>(
+                    enterTransition = { slideInHorizontally() { initialOffset ->
+                        initialOffset
+                    } },
+                    exitTransition = { slideOutHorizontally{ initialOffset ->
+                        initialOffset
+                    } }
+                ) { backStackEntry ->
                     val args = backStackEntry.toRoute<Route.BookDetail>()
                     val selectedBookViewModel =
                         backStackEntry.sharedKoinViewModel<SelectedBookViewModel>(navController)
