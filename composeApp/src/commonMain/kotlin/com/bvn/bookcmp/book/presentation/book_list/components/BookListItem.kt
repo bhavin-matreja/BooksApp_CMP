@@ -38,6 +38,7 @@ import bookapp_cmp.composeapp.generated.resources.book_error_2
 import coil3.compose.rememberAsyncImagePainter
 import com.bvn.bookcmp.book.domain.Book
 import com.bvn.bookcmp.core.presentation.LightBlue
+import com.bvn.bookcmp.core.presentation.PulseAnimation
 import com.bvn.bookcmp.core.presentation.SandYellow
 import org.jetbrains.compose.resources.painterResource
 import kotlin.math.round
@@ -86,7 +87,9 @@ fun BookListItem(
                     }
                 )
                 when (val result = imageLoadResult) {
-                    null -> CircularProgressIndicator()
+                    null -> PulseAnimation(
+                        modifier = Modifier.size(60.dp)
+                    )
                     else -> {
                         Image(
                             painter = if (result.isSuccess) painter else painterResource(Res.drawable.book_error_2),
