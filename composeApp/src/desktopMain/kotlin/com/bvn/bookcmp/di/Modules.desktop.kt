@@ -1,5 +1,6 @@
 package com.bvn.bookcmp.di
 
+import com.bvn.bookcmp.book.data.database.DatabaseFactory
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.core.module.Module
@@ -10,4 +11,5 @@ actual val platformModule: Module
         single<HttpClientEngine> {
             OkHttp.create()
         }
+        single { DatabaseFactory() }
     }

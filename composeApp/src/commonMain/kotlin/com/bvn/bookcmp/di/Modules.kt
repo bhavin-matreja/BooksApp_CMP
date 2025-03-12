@@ -1,5 +1,8 @@
 package com.bvn.bookcmp.di
 
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import com.bvn.bookcmp.book.data.database.DatabaseFactory
+import com.bvn.bookcmp.book.data.database.FavoriteBookDatabase
 import com.bvn.bookcmp.book.data.network.KtorRemoteBookDataSource
 import com.bvn.bookcmp.book.data.network.RemoteBookDataSource
 import com.bvn.bookcmp.book.data.repository.DefaultBookRepository
@@ -25,4 +28,14 @@ val sharedModule = module {
     viewModelOf(::BookListViewModel)
     viewModelOf(::SelectedBookViewModel)
     viewModelOf(::BookDetailViewModel)
+
+    single {
+        get<DatabaseFactory>().create()
+            .setDriver(BundledSQLiteDriver())
+            .build()
+    }
+
+    single {
+        get<FavoriteBookDatabase>().favoriteBookDao
+    }
 }
