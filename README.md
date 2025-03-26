@@ -1,14 +1,37 @@
-This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
+# Books App 
 
-* `/composeApp` is for code that will be shared across your Compose Multiplatform applications.
-  It contains several subfolders:
-  - `commonMain` is for code that’s common for all targets.
-  - Other folders are for Kotlin code that will be compiled for only the platform indicated in the folder name.
-    For example, if you want to use Apple’s CoreCrypto for the iOS part of your Kotlin app,
-    `iosMain` would be the right folder for such calls.
-
-* `/iosApp` contains iOS applications. Even if you’re sharing your UI with Compose Multiplatform, 
-  you need this entry point for your iOS app. This is also where you should add SwiftUI code for your project.
+## Overview
+This is a Compose Multiplatform application for browsing and managing books. It allows users to search for books through an API, view book details, and add books to their favorites, which are stored locally using Room.
 
 
-Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+## 🚀 Features
+- 🔍 **Search for books** using an API
+- ⭐ **Add books to favorites**
+- 📜 **View list of saved books** (stored locally)
+- 💾 **Offline access** to favorites
+- 🖥️ **Runs on Android, iOS, and Desktop**
+
+## 🛠 Tech Stack
+- **UI:** [Jetpack Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform)
+- **Networking:** Ktor Client
+- **Local Storage:** Room Database
+- **Dependency Injection:** Koin
+- **Navigation:** Jetpack Compose Navigation
+- **State Management:** Flow & Coroutines
+
+## 🖥️ Screenshots
+
+### 📱 Android
+| Listing | Detail                                         | Favorites                                              |
+|---------|------------------------------------------------|--------------------------------------------------------|
+| ![Listing]<img src="screenshots/android-book-listing.png" width="200"> | ![Detail]<img src="screenshots/android-book-detail.png" width="200"> | ![Favorites]<img src="screenshots/android-favorite-listing.png" width="200"> |
+
+### 🍏 iOS
+| Listing | Detail | Favorites |
+|---------|--------|----------|
+| ![Listing](screenshots/ios_listing.png) | ![Detail](screenshots/ios_detail.png) | ![Favorites](screenshots/ios_favorites.png) |
+
+### 💻 Desktop
+| Listing | Detail | Favorites |
+|---------|--------|----------|
+| ![Listing](screenshots/desktop_listing.png) | ![Detail](screenshots/desktop_detail.png) | ![Favorites](screenshots/desktop_favorites.png) |
